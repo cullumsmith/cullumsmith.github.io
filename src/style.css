@@ -1,3 +1,4 @@
+<style>
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
@@ -5,7 +6,8 @@ html {
 }
 
 body {
-  color: #333;
+  color: #333333;
+  line-height: 1.4;
   margin: 1em auto 2em auto;
   max-width: 43em;
   padding: 0 1em;
@@ -13,11 +15,16 @@ body {
 }
 
 a {
+  text-decoration: none;
   color: #0074D9
 }
 
 a:visited {
-  color: #941352
+  color: #8366c1;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 blockquote {
@@ -32,10 +39,6 @@ dt {
 header .subtitle {
   margin-top: -1em;
   margin-bottom: 21.44px;
-}
-
-.bloglist p:nth-of-type(2) {
-  margin-top: -8px;
 }
 
 header .date {
@@ -59,9 +62,34 @@ footer {
   border-radius: 50%;
 }
 
+.bloglist ul li+li {
+  margin-top: 1em;
+}
+
+.bloglist .date {
+  float: right;
+  font-style: italic;
+}
+
 .ytembed {
   width: 100%;
   aspect-ratio: 16 / 9;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  margin-right: 1em;
+}
+
+nav ul li.jmj {
+  margin-left: auto;
 }
 
 @media only screen and (max-device-width : 667px) {
@@ -75,7 +103,7 @@ footer {
 }
 
 @media print {
-  .navbar {
+  nav {
     display: none !important;
   }
 }
@@ -117,3 +145,4 @@ details {
   max-width: 100%;
   object-fit: contain;
 }
+</style>

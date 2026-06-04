@@ -6,7 +6,7 @@ import dateparser
 import datetime
 from pathlib import Path
 
-BLOG_LIST_FILE = '.bloglist.md'
+BLOG_LIST_FILE = '__BLOGLIST.md'
 
 def get_href(path):
     path = Path(path)

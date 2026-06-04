@@ -1,45 +1,44 @@
 ---
-title: "Cullum Smith: Homepage"
+title: Cullum Smith
 heading: Cullum Smith's Homepage
-subtitle: Benedictus Deus! Benedictum Nomen Sanctum ejus.
-description: "Unix wrangler, Gregorian chant and banjo enjoyer"
+description: Cullum Smith is a software professional and amatuer musician located in South Carolina.
 ---
 
-I'm a computer person located in South Carolina. Welcome to my humble website.
+Hi! I'm a platform engineer and amateur musician located in South Carolina.
+
+Professionally, I manage computer infrastructure, write software, and enjoy
+old-school sysadminning.
+
+Less professionally, I sing sacred music and play the piano and organ. I also pick the banjo.
+
 
 ## About Me
 ![](me.jpg "Cullum Smith"){.logo}
 
 - Unix wrangler
 - Gregorian chant & banjo enjoyer
-- Half sysadmin, half programmer
-- Dixie Catholic, four kids
+- Father of five
 
 ## Contact
+
 - Email: [cullum@sacredheartsc.com](mailto:cullum@sacredheartsc.com)
-- XMPP: [cullum@sacredheartsc.com](xmpp:cullum@sacredheartsc.com?message)
 - Fediverse: <a rel="me" href="https://mastodon.bsd.cafe/@cullum">@cullum@bsd.cafe</a>
 - Matrix: [@cullum:sacredheartsc.com](https://matrix.to/#/@cullum:sacredheartsc.com)
-- IRC: [cullum on libera.chat](ircs://irc.libera.chat/cullum,isnick)
 - GPG: [0x5CAF6291](/gpg.asc)
-- Big Tech: [X](https://x.com/CullumSmith) |
-            [GitHub](https://github.com/cullumsmith) |
-            [Facebook](https://www.facebook.com/CullumSmith01) |
-            [Instagram](https://www.instagram.com/dixiecatholic/) |
-            [Bluesky](https://bsky.app/profile/cullum.sacredheartsc.com) |
-            [LinkedIn](https://www.linkedin.com/in/cullumsmith/)
-
-## Links
-- [Blog](/blog/)
-- [Code](https://git.sacredheartsc.com/)
-- [Curriculum Vitae](/cv/)
+- Big Tech: [X](https://x.com/CullumSmith "@CullumSmith") |
+            [Instagram](https://www.instagram.com/dixiecatholic/ "@dixiecatholic") |
+            [Facebook](https://www.facebook.com/CullumSmith01 "CullumSmith01") |
+            [LinkedIn](https://www.linkedin.com/in/cullumsmith/ "in/cullumsmith") |
+            [GitHub](https://github.com/cullumsmith "cullumsmith")
 
 ## Recent Posts
 
 ::: bloglist
-__BLOG_LIST__
+__BLOGLIST__
 :::
 
-## Odds & Ends
-
+## Links
+- [Personal Blog](/blog/)
+- [Git Repo](https://git.sacredheartsc.com/)
+- [Curriculum Vitae](/cv/)
 - [FFmpeg Cheat Sheet](/misc/ffmpeg/)

@@ -18,9 +18,16 @@ if args.LIMIT is not None:
 if len(posts) == 0:
     print('Nothing has been posted yet!')
 else:
+    print('<ul class="bloglist">')
     for post in posts:
-        post_date = post['date'].strftime(DATE_FORMAT)
+        date = post['date'].strftime(DATE_FORMAT)
+        href=post["href"]
+        title=post["title"]
+        description=post.get("description")
 
-        print(f'- [{post["title"]}]({post["href"]}) ({post_date})\n')
-        if post['description']:
-            print(f'  {post["description"]}\n')
+        print(f'<li><a href="{href}">{title}</a><span class="date">{date}</span>', end='')
+        if description is not None:
+            print(f'<br>{description}</li>')
+        else:
+            print('</li>')
+    print('</ul>')

@@ -1,116 +1,114 @@
-### CHANGE ME ######################
-DOMAIN             = www.sacredheartsc.com
-URL                = https://${DOMAIN}
-RSYNC_TARGET       = ${DOMAIN}:/usr/local/www/vhosts/${DOMAIN}
+BASE_URL           = https://www.sacredheartsc.com
+STATIC_REGEX       = .*\.(html|jpg|jpeg|png|xml|txt|ico|webmanifest|svg|asc)
+SITEMAP_EXCLUDE    = $(BLOGLIST_MARKDOWN) google*.html
+BLOG_LIST_LIMIT    = 3
 FEED_TITLE         = Cullum Smith's Blog
-FEED_DESCRIPTION   = Blog of a unix wrangler, Gregorian chant and banjo enjoyer
-STATIC_REGEX       = .*\.(html|css|jpg|jpeg|png|ico|xml|txt|asc|webmanifest|pdf)
-RECENT_POSTS_LIMIT = 5
-HIGHLIGHT_STYLE    = pygments
+FEED_DESCRIPTION   = Self-hosting, Unix, sacred music, and more.
 
+RSYNC_TARGET       = www1.idm.sacredheartsc.com:/usr/local/www/vhosts/www.sacredheartsc.com/
 
-### VARIABLES ######################
-SOURCE_DIR         = src
-OUTPUT_DIR         = public
-SCRIPT_DIR         = scripts
-BLOG_DIR           = blog
+OS := $(shell uname -s)
+ifeq ($(OS),FreeBSD)
+	FIND = gfind
+else
+	FIND = find
+endif
 
-TEMPLATE           = templates/default.html
-CV_TEMPLATE        = templates/cv.html
-DEFAULTS           = defaults.yaml
+SOURCE_DIR          = src
+OUTPUT_DIR          = dist
+SCRIPT_DIR          = scripts
+BLOG_DIR            = blog
+TEMPLATE_DIR        = templates
+FEED_PATH           = feed.xml
+DEFAULT_TEMPLATE    = $(TEMPLATE_DIR)/default.html
+CV_TEMPLATE         = $(TEMPLATE_DIR)/cv.html
+HOMEPAGE_TEMPLATE   = $(TEMPLATE_DIR)/homepage.html
+PANDOC_CONFIG       = pandoc.yml
+DEFAULT_CSS         = $(SOURCE_DIR)/style.css
+PANDOC_METADATA     = metadata.md
+BLOGLIST_REPLACE    = __BLOGLIST__
+BLOGLIST_FILENAME   = __BLOGLIST.md
+SOURCE_DIRS        := $(shell $(FIND) $(SOURCE_DIR) -mindepth 1 -type d)
+SOURCE_MARKDOWN    := $(shell $(FIND) $(SOURCE_DIR) -type f -name '*.md' -and ! -name $(BLOGLIST_FILENAME))
+SOURCE_STATIC      := $(shell $(FIND) $(SOURCE_DIR) -type f -regextype posix-extended -iregex '$(STATIC_REGEX)')
+SOURCE_BLOG        := $(shell $(FIND) $(SOURCE_DIR)/$(BLOG_DIR) -type f -name '*.md' -and ! -name $(BLOGLIST_FILENAME) -and ! -path $(SOURCE_DIR)/$(BLOG_DIR)/index.md)
+OUTPUT_DIRS        := $(patsubst $(SOURCE_DIR)/%, $(OUTPUT_DIR)/%, $(SOURCE_DIRS))
+OUTPUT_MARKDOWN    := $(patsubst $(SOURCE_DIR)/%, $(OUTPUT_DIR)/%, $(patsubst %.md, %.html, $(SOURCE_MARKDOWN)))
+OUTPUT_STATIC      := $(patsubst $(SOURCE_DIR)/%, $(OUTPUT_DIR)/%, $(SOURCE_STATIC))
+OUTPUT_SITEMAP      = $(OUTPUT_DIR)/sitemap.xml
+OUTPUT_RSS          = $(OUTPUT_DIR)/$(FEED_PATH)
+OUTPUT_BLOGLIST_SHORT = $(SOURCE_DIR)/$(BLOGLIST_FILENAME)
+OUTPUT_BLOGLIST       = $(SOURCE_DIR)/$(BLOG_DIR)/$(BLOGLIST_FILENAME)
 
-BLOG_LIST_SCRIPT   = ${SCRIPT_DIR}/bloglist.py
-BLOG_LIST_REPLACE  = __BLOG_LIST__
-BLOG_LIST_FILE     = .bloglist.md
+CP                  = cp -p
+MKSITEMAP           = $(SCRIPT_DIR)/sitemap.py
+MKRSS               = $(SCRIPT_DIR)/rss.py
+MKBLOGLIST          = $(SCRIPT_DIR)/bloglist.py
+INTERPOLATE         = sed -e '/$(1)/{r $(2)' -e 'd;}'
+RELPATH             = $(shell $(SCRIPT_DIR)/relpath.py $(OUTPUT_DIR) "$(1)")
+PANDOC              = pandoc \
+											  --defaults=$(PANDOC_CONFIG) \
+												--include-in-header="$(DEFAULT_CSS)" \
+												--template="$(1)" \
+												--metadata="relpath:$(call RELPATH,$(2))" \
+												--metadata="baseurl:$(BASE_URL)" \
+												--metadata="feed:/$(FEED_PATH)" \
+												--output="$(2)" \
+												$(PANDOC_METADATA) \
+												-
 
-BLOG_RSS_SCRIPT    = ${SCRIPT_DIR}/rss.py
-BLOG_RSS_FILE      = ${BLOG_DIR}/feed.xml
+# Default target
+build: \
+	$(OUTPUT_DIRS) \
+	$(OUTPUT_MARKDOWN) \
+	$(OUTPUT_STATIC) \
+	$(OUTPUT_SITEMAP) \
+  $(OUTPUT_RSS)
 
-SOURCE_DIRS       != find ${SOURCE_DIR} -mindepth 1 -type d
-SOURCE_HOMEPAGE   := ${SOURCE_DIR}/index.md
-SOURCE_BLOGLIST   := ${SOURCE_DIR}/${BLOG_DIR}/index.md
-SOURCE_CV         := ${SOURCE_DIR}/cv/index.md
-SOURCE_SPECIAL    := ${SOURCE_HOMEPAGE} ${SOURCE_BLOGLIST} ${SOURCE_CV}
-SOURCE_MARKDOWN   != find ${SOURCE_DIR} -type f -name '*.md' ! -name ${BLOG_LIST_FILE} ${SOURCE_SPECIAL:C/^/! -path /}
-SOURCE_STATIC     != find -E ${SOURCE_DIR} -type f -iregex ${STATIC_REGEX:Q}
-
-BLOG_POSTS        != find ${SOURCE_DIR}/${BLOG_DIR} -type f -name '*.md' ! -name ${BLOG_LIST_FILE} ! -path ${SOURCE_BLOGLIST}
-RECENT_POST_LIST   = ${SOURCE_DIR}/${BLOG_LIST_FILE}
-FULL_POST_LIST     = ${SOURCE_DIR}/${BLOG_DIR}/${BLOG_LIST_FILE}
-
-SOURCE2OUTPUT      = S/^${SOURCE_DIR}\//${OUTPUT_DIR}\//
-SOURCE2HTML        = ${SOURCE2OUTPUT}:S/.md$$/.html/
-OUTPUT2SOURCE      = S/^${OUTPUT_DIR}\//${SOURCE_DIR}\//
-HTML2SOURCE        = ${OUTPUT2SOURCE}:S/.html$$/.md/
-
-OUTPUT_DIRS       := ${SOURCE_DIRS:${SOURCE2OUTPUT}}
-OUTPUT_HOMEPAGE   := ${SOURCE_HOMEPAGE:${SOURCE2HTML}}
-OUTPUT_BLOGLIST   := ${SOURCE_BLOGLIST:${SOURCE2HTML}}
-OUTPUT_CV         := ${SOURCE_CV:${SOURCE2HTML}}
-OUTPUT_SPECIAL    := ${SOURCE_SPECIAL:${SOURCE2HTML}}
-OUTPUT_MARKDOWN   := ${SOURCE_MARKDOWN:${SOURCE2HTML}}
-OUTPUT_STATIC     := ${SOURCE_STATIC:${SOURCE2OUTPUT}}
-OUTPUT_RSS        := ${OUTPUT_DIR}/${BLOG_RSS_FILE}
-
-
-### BUILD COMMANDS ######################
-COPY                  = cp -p
-PANDOC               := pandoc --highlight-style=${HIGHLIGHT_STYLE} --metadata=feed:/${BLOG_RSS_FILE} --defaults=${DEFAULTS}
-GENERATE_RSS         := ${BLOG_RSS_SCRIPT} ${SOURCE_DIR}/${BLOG_DIR} --title=${FEED_TITLE:Q} --description=${FEED_DESCRIPTION:Q} --url=${URL:Q} --blog-path=/${BLOG_DIR} --feed-path=/${BLOG_RSS_FILE}
-GENERATE_BLOGLIST    := ${BLOG_LIST_SCRIPT} ${SOURCE_DIR}/${BLOG_DIR}
-INTERPOLATE_BLOGLIST  = sed -e '/${BLOG_LIST_REPLACE}/{r ${BLOGLIST_HTML}' -e 'd;}'
-
-
-### TARGETS ######################
-.SHELL: name=sh quiet="set -" echo="set -v" filter="set -" hasErrCtl=yes check="set -eo pipefail" ignore="set +e" echoFlag=v errFlag=e path=/bin/sh
-
-public: ${OUTPUT_DIRS} ${OUTPUT_SPECIAL} ${OUTPUT_MARKDOWN} ${OUTPUT_STATIC} ${OUTPUT_RSS}
-
-${OUTPUT_DIRS}:
+$(OUTPUT_DIRS):
 	mkdir -p $@
 
-# Homepage
-${OUTPUT_HOMEPAGE}: ${SOURCE_HOMEPAGE} ${RECENT_POST_LIST} ${TEMPLATE} BLOGLIST_HTML=${RECENT_POST_LIST}
-	${INTERPOLATE_BLOGLIST} ${SOURCE_HOMEPAGE} | ${PANDOC} --template=${TEMPLATE} --output=$@
+# Homepage (/)
+$(OUTPUT_DIR)/index.html: $(SOURCE_DIR)/index.md $(OUTPUT_BLOGLIST_SHORT) $(HOMEPAGE_TEMPLATE) $(PANDOC_CONFIG) $(PANDOC_METADATA) $(DEFAULT_CSS)
+	$(call INTERPOLATE,$(BLOGLIST_REPLACE),$(OUTPUT_BLOGLIST_SHORT)) $< | $(call PANDOC,$(HOMEPAGE_TEMPLATE),$@)
 
-# HTML for partial blog listing
-${RECENT_POST_LIST}: ${BLOG_POSTS} ${BLOG_LIST_SCRIPT}
-	${GENERATE_BLOGLIST} ${RECENT_POSTS_LIMIT} > $@
+# CV (/cv/)
+$(OUTPUT_DIR)/cv/index.html: $(SOURCE_DIR)/cv/index.md $(OUTPUT_BLOGLIST_SHORT) $(CV_TEMPLATE) $(PANDOC_CONFIG) $(PANDOC_METADATA) $(DEFAULT_CSS)
+	$(call INTERPOLATE,$(BLOGLIST_REPLACE),$(OUTPUT_BLOGLIST_SHORT)) $< | $(call PANDOC,$(CV_TEMPLATE),$@)
 
-# CV
-${OUTPUT_CV}: ${SOURCE_CV} ${CV_TEMPLATE}
-	${PANDOC} --template=${CV_TEMPLATE} --output=$@ ${SOURCE_CV}
+$(OUTPUT_BLOGLIST_SHORT): $(BLOG_POSTS) $(MKBLOGLIST)
+	$(MKBLOGLIST) $(SOURCE_DIR)/$(BLOG_DIR) $(BLOG_LIST_LIMIT) > $@
 
-# Main blog page
-${OUTPUT_BLOGLIST}: ${SOURCE_BLOGLIST} ${FULL_POST_LIST} ${TEMPLATE} BLOGLIST_HTML=${FULL_POST_LIST}
-	${INTERPOLATE_BLOGLIST} ${SOURCE_BLOGLIST} | ${PANDOC} --template=${TEMPLATE} --output=$@
+$(OUTPUT_BLOGLIST): $(BLOG_POSTS) $(MKBLOGLIST)
+	$(MKBLOGLIST) $(SOURCE_DIR)/$(BLOG_DIR) > $@
 
-# HTML for full blog listing
-${FULL_POST_LIST}: ${BLOG_POSTS} ${BLOG_LIST_SCRIPT}
-	${GENERATE_BLOGLIST} > $@
+# Blog (/blog/)
+$(OUTPUT_DIR)/$(BLOG_DIR)/index.html: $(SOURCE_DIR)/$(BLOG_DIR)/index.md $(OUTPUT_BLOGLIST) $(DEFAULT_TEMPLATE) $(PANDOC_CONFIG) $(PANDOC_METADATA) $(DEFAULT_CSS)
+	$(call INTERPOLATE,$(BLOGLIST_REPLACE),$(OUTPUT_BLOGLIST)) $< | $(call PANDOC,$(DEFAULT_TEMPLATE),$@)
+
+# Sitemap
+$(OUTPUT_SITEMAP): $(SOURCE_MARKDOWN) $(SOURCE_STATIC) $(MKSITEMAP)
+	$(MKSITEMAP) $(BASE_URL) $(SOURCE_DIR) $(SITEMAP_EXCLUDE) > $@
 
 # RSS feed
-${OUTPUT_RSS}: ${BLOG_POSTS} ${BLOG_RSS_SCRIPT}
-	${GENERATE_RSS} > $@
+$(OUTPUT_RSS): $(BLOG_POSTS) $(MKRSS)
+	$(MKRSS) $(SOURCE_DIR)/$(BLOG_DIR) --blog-path /$(BLOG_DIR) --feed-path /$(FEED_PATH) --url $(BASE_URL) --title "$(FEED_TITLE)" --description "$(FEED_DESCRIPTION)" > $@
 
-# Blog posts
-${OUTPUT_MARKDOWN}: ${@:${HTML2SOURCE}} ${TEMPLATE}
-	${PANDOC} --template=${TEMPLATE} --output=$@ ${@:${HTML2SOURCE}}
+# Convert all other .md files to .html
+$(OUTPUT_DIR)/%.html: $(SOURCE_DIR)/%.md $(DEFAULT_TEMPLATE) $(PANDOC_CONFIG) $(PANDOC_METADATA) $(DEFAULT_CSS)
+		$(call PANDOC,$(DEFAULT_TEMPLATE),$@) < $<
 
-# Static assets
-${OUTPUT_STATIC}: ${@:${OUTPUT2SOURCE}}
-	${COPY} ${@:${OUTPUT2SOURCE}} $@
+# Catch-all: copy static assets in $(SOURCE_DIR)/ to $(OUTPUT_DIR)/
+$(OUTPUT_DIR)/%: $(SOURCE_DIR)/%
+		$(CP) $< $@
 
-.PHONY: deps serve rsync clean
-deps:
-	pip install -r requirements.txt
-
-serve: public
-	cd ${OUTPUT_DIR} && python3 -m http.server
-
-rsync: public
-	rsync -rlphv --delete ${OUTPUT_DIR}/ ${RSYNC_TARGET}
+.PHONY: serve clean
+serve: build
+		cd $(OUTPUT_DIR) && python3 -m http.server
 
 clean:
-	rm -rf ${OUTPUT_DIR}
-	find ${SOURCE_DIR} -type f -name ${BLOG_LIST_FILE} -delete
+		rm -rf $(OUTPUT_DIR) $(SOURCE_DIR)/$(BLOG_DIR)/$(BLOGLIST_FILENAME) $(SOURCE_DIR)/$(BLOGLIST_FILENAME)
+
+rsync: build
+	rsync -rlphv --delete ${OUTPUT_DIR}/ ${RSYNC_TARGET}
+

@@ -6,13 +6,13 @@
   <meta name="description" content="$description$">
   <meta property="og:url" content="$baseurl$/$relpath$">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="$title$ | $site-title$">
+  <meta property="og:title" content="$title$">
   <meta property="og:site_name" content="$site-title$">
   <meta property="og:description" content="$description$">
   <meta property="og:image" content="$baseurl$/$social-image$">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@$twitter$">
-  <title>$title$ | $site-title$</title>
+  <title>$title$</title>
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -77,15 +77,12 @@ $endif$
 $if(subtitle)$
   <p class="subtitle">$subtitle$</p>
 $endif$
+$if(date)$
+<p class="date">$date$ AD</p>
+$endif$
 </header>
 
 $body$
-
-$if(date)$
-<footer>
-  <p class="date">Last updated $date$</p>
-</footer>
-$endif$
 
 $for(include-after)$
 $include-after$
