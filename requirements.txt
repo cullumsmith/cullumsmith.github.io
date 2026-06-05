@@ -1,4 +1,3 @@
 python-frontmatter
 dateparser
 typing_extensions
-urllib
