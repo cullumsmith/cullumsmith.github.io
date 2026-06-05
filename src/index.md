@@ -12,7 +12,7 @@ Thanks for visiting my little website.
 
 
 ## About Me
-![](headshot.jpg "Cullum Smith"){.logo}
+![](cullum.jpg "Cullum Smith"){.logo}
 
 - Unix wrangler
 - Gregorian chant & banjo enjoyer

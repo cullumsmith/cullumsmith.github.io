@@ -1,6 +1,6 @@
 ---
 baseurl: https://www.sacredheartsc.com
 site-title: Cullum Smith
-social-image: headshot.jpg
+social-image: cullum.jpg
 twitter: CullumSmith
 ---
