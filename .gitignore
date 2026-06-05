@@ -1,5 +1,5 @@
 dist
-**/.bloglist.md
+**/__BLOGLIST.md
 *.pyc
 *.pyo
 *.swp
