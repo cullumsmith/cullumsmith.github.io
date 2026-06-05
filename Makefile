@@ -1,6 +1,5 @@
 BASE_URL           = https://www.sacredheartsc.com
 STATIC_REGEX       = .*\.(html|jpg|jpeg|png|xml|txt|ico|webmanifest|svg|asc)
-SITEMAP_EXCLUDE    = *$(BLOGLIST_FILENAME) google*.html
 BLOG_LIST_LIMIT    = 3
 FEED_TITLE         = Cullum Smith's Blog
 FEED_DESCRIPTION   = Self-hosting, Unix, sacred music, and more.
@@ -88,7 +87,7 @@ $(OUTPUT_DIR)/$(BLOG_DIR)/index.html: $(SOURCE_DIR)/$(BLOG_DIR)/index.md $(OUTPU
 
 # Sitemap
 $(OUTPUT_SITEMAP): $(SOURCE_MARKDOWN) $(SOURCE_STATIC) $(MKSITEMAP)
-	$(MKSITEMAP) $(BASE_URL) $(SOURCE_DIR) $(SITEMAP_EXCLUDE) > $@
+	$(MKSITEMAP) $(BASE_URL) $(SOURCE_DIR) > $@
 
 # RSS feed
 $(OUTPUT_RSS): $(BLOG_POSTS) $(MKRSS)

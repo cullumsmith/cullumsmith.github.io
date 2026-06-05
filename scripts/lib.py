@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+
+import os
+import frontmatter
+import dateparser
+import datetime
+import subprocess
+import urllib
+
+from glob import glob
+from fnmatch import fnmatch
+from datetime import datetime, timezone, date
+from pathlib import Path
+
+BLOG_LIST_FILE = '__BLOGLIST.md'
+
+EXCLUDE_PATTERNS = [
+    f"*{BLOG_LIST_FILE}",
+    "google*.html"
+]
+
+class Page():
+    def __init__(self, path):
+        self._path = path
+        self._metadata = None
+
+    @property
+    def path(self):
+        return self._path
+
+    @property
+    def href(self):
+        path = Path(self._path)
+        path = path.relative_to(*path.parts[:1])
+        if path.name == 'index.md':
+            if len(path.parts) == 1:
+                return '/'
+            return '/{}/'.format(path.parent)
+        else:
+            return '/{}/{}.html'.format(path.parent, path.stem)
+
+    @property
+    def metadata(self):
+        if self._metadata is None:
+            try:
+                self._metadata = frontmatter.load(self.path)
+            except:
+                self._metadata = {}
+        return self._metadata
+
+    @property
+    def git_date(self):
+        lastmod = subprocess.run(['git', 'log', '-1', '--format=%cI', self._path],
+                        stdout=subprocess.PIPE,
+                        check=True,
+                        universal_newlines=True).stdout.strip()
+        return datetime.fromisoformat(lastmod)
+
+    @property
+    def date(self):
+        if 'date' in self.metadata:
+            if type(self.metadata["date"]) not in [datetime, date]:
+                return dateparser.parse(self.metadata["date"])
+            else:
+                return self.metadata["date"]
+        return self.git_date
+
+    @property
+    def title(self):
+        return self.metadata.get('title')
+
+    @property
+    def author(self):
+        return self.metadata.get('author')
+
+    @property
+    def description(self):
+        return self.metadata.get('description')
+
+    @property
+    def draft(self):
+        return self.metadata.get('draft')
+
+    def __lt__(self, other):
+        return self.date.replace(tzinfo=timezone.utc) < other.date.replace(tzinfo=timezone.utc)
+
+    def __str__(self):
+        return self.path
+
+def relpath(root_dir, path):
+    root_dir = Path(root_dir)
+    path     = Path(path)
+    relpath  = path.relative_to(root_dir)
+
+    if path == root_dir:
+        raise ValueError("path and root_dir are the same!")
+
+    if relpath.name in ["index.html", "index.md"]:
+        parent = relpath.parent.as_posix()
+        if parent == ".":
+            url = ""
+        else:
+            url = parent + os.sep
+    else:
+        url = relpath.as_posix()
+    return urllib.parse.quote(url)
+
+def get_blog_posts(source_dir):
+    posts = [Page(f) for f in glob(f"{source_dir}/*/index.md") if os.path.isfile(f)]
+    posts = [p for p in posts if not p.draft]
+    return sorted(posts, reverse=True)
+
+def get_pages(source_dir):
+    pages = []
+    for root, dirs, files in os.walk(source_dir):
+        for file in files:
+            path = os.path.join(root, file)
+            if path.endswith('.md') or path.endswith('.html'):
+                exclude = False
+                for pattern in EXCLUDE_PATTERNS:
+                    if fnmatch(path, pattern):
+                        exclude = True
+                        break
+                if exclude:
+                    continue
+                page = Page(path)
+                if not page.draft: 
+                    pages.append(page)
+    return pages

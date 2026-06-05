@@ -3,7 +3,7 @@
 import argparse
 import email.utils
 from datetime import datetime
-from common import get_blog_posts
+from lib import get_blog_posts
 
 parser = argparse.ArgumentParser('rss')
 parser.add_argument('BLOG_DIR', type=str, help='Directory containing markdown blog posts')
@@ -31,16 +31,16 @@ print(f'''<?xml version="1.0"?>
   <atom:link href="{args.url}{args.feed_path}" rel="self" type="application/rss+xml"/>''')
 
 for post in posts:
-    pub_date = email.utils.format_datetime(post['date'].astimezone())
+    pub_date = email.utils.format_datetime(post.date.astimezone())
 
     print(f'''  <item>
-    <title>{post["title"]}</title>
-    <link>{args.url}{post["href"]}</link>
-    <guid>{args.url}{post["href"]}</guid>
+    <title>{post.title}</title>
+    <link>{args.url}{post.href}</link>
+    <guid>{args.url}{post.href}</guid>
     <pubDate>{pub_date}</pubDate>''')
 
-    if 'description' in post:
-        print(f'    <description>{post["description"]}</description>')
+    if post.description is not None:
+        print(f'    <description>{post.description}</description>')
 
     print('  </item>')
 

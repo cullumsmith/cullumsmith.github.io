@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-from common import get_blog_posts
+from lib import get_blog_posts
 
 DATE_FORMAT = '%Y-%m-%d'
 
@@ -13,21 +13,16 @@ args = parser.parse_args()
 posts = get_blog_posts(args.BLOG_DIR)
 
 if args.LIMIT is not None:
-    posts = posts[0:args.LIMIT]
+    posts = posts[:args.LIMIT]
 
 if len(posts) == 0:
     print('Nothing has been posted yet!')
 else:
     print('<ul class="bloglist">')
     for post in posts:
-        date = post['date'].strftime(DATE_FORMAT)
-        href=post["href"]
-        title=post["title"]
-        description=post.get("description")
-
-        print(f'<li><a href="{href}">{title}</a><span class="date">{date}</span>', end='')
-        if description is not None:
-            print(f'<br>{description}</li>')
+        print(f'<li><a href="{post.href}">{post.title}</a><span class="date">{post.date.strftime(DATE_FORMAT)}</span>', end='')
+        if post.description is not None:
+            print(f'<br>{post.description}</li>')
         else:
             print('</li>')
     print('</ul>')
