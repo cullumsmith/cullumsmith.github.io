@@ -1,15 +1,14 @@
 ---
 title: Cullum Smith
-heading: Cullum Smith's Homepage
 description: Cullum Smith is a software professional and amatuer musician located in South Carolina.
 ---
 
-Hi! I'm a platform engineer and amateur musician located in South Carolina.
+I'm a platform engineer located in South Carolina.
 
-Professionally, I manage computer infrastructure, write software, and enjoy
-old-school sysadminning.
+I manage computer infrastructure, write software, and do sysadmin things. 
+Less professionally, I sing sacred music, play the piano and organ, and pick the banjo.
 
-Less professionally, I sing sacred music and play the piano and organ. I also pick the banjo.
+Thanks for visiting my little website.
 
 
 ## About Me
@@ -39,6 +38,6 @@ __BLOGLIST__
 
 ## Links
 - [Personal Blog](/blog/)
-- [Git Repos](https://github.com/cullumsmith/)
+- [Git Repo](https://git.sacredheartsc.com/)
 - [Curriculum Vitae](/cv/)
 - [FFmpeg Cheat Sheet](/misc/ffmpeg/)
