@@ -8,6 +8,8 @@ from datetime import datetime
 
 from relpath import relpath
 
+from common import read_metadata
+
 baseurl = sys.argv[1]
 source_dir = sys.argv[2]
 exclude_patterns = sys.argv[2:]
@@ -24,8 +26,14 @@ for root, dirs, files in os.walk(source_dir):
                 if fnmatch.fnmatch(rpath, pattern):
                     exclude = True
                     break
-            if not exclude:
-                indexable_paths[path] = rpath
+            if exclude:
+                break
+            try:
+                if read_metadata(path)["draft"]:
+                    break
+            except:
+                pass
+            indexable_paths[path] = rpath
 
 print('<?xml version="1.0" encoding="UTF-8"?>')
 print('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
