@@ -4,7 +4,7 @@ heading: Contact Me
 description: "Connect with Cullum Smith"
 ---
 
-Email is preferred: ![](/me.jpg "Cullum Smith"){.logo}
+Email is preferred: ![](/headshot.jpg "Cullum Smith"){.logo}
 
 - [cullum@sacredheartsc.com](mailto:cullum@sacredheartsc.com)
 
