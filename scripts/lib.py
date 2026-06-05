@@ -126,4 +126,4 @@ def get_pages(source_dir):
                 page = Page(path)
                 if not page.draft: 
                     pages.append(page)
-    return pages
+    return sorted(pages, reverse=True)
