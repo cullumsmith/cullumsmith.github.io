@@ -1,26 +1,25 @@
 #!/usr/bin/env python3
 
 import os
-import frontmatter
-import dateparser
-import datetime
 import subprocess
-import urllib
-
-from glob import glob
+from datetime import date, datetime, timezone
 from fnmatch import fnmatch
-from datetime import datetime, timezone, date
+from glob import glob
 from pathlib import Path
+from urllib.parse import quote
 
-BLOG_LIST_FILE = '__BLOGLIST.md'
+import dateparser
+import frontmatter
+from typing_extensions import final, override
 
-EXCLUDE_PATTERNS = [
-    f"*{BLOG_LIST_FILE}",
-    "google*.html"
-]
+BLOG_LIST_FILE = "__BLOGLIST.md"
 
-class Page():
-    def __init__(self, path):
+EXCLUDE_PATTERNS = [f"*{BLOG_LIST_FILE}", "google*.html"]
+
+
+@final
+class Page:
+    def __init__(self, path: str):
         self._path = path
         self._metadata = None
 
@@ -32,67 +31,81 @@ class Page():
     def href(self):
         path = Path(self._path)
         path = path.relative_to(*path.parts[:1])
-        if path.name == 'index.md':
+        if path.name == "index.md":
             if len(path.parts) == 1:
-                return '/'
-            return '/{}/'.format(path.parent)
+                return "/"
+            return "/{}/".format(path.parent)
         else:
-            return '/{}/{}.html'.format(path.parent, path.stem)
+            return "/{}/{}.html".format(path.parent, path.stem)
 
     @property
     def metadata(self):
         if self._metadata is None:
             try:
-                self._metadata = frontmatter.load(self.path)
+                self._metadata = frontmatter.load(self.path).to_dict()
             except:
                 self._metadata = {}
         return self._metadata
 
     @property
     def git_date(self):
-        lastmod = subprocess.run(['git', 'log', '-1', '--format=%cI', self._path],
-                        stdout=subprocess.PIPE,
-                        check=True,
-                        universal_newlines=True).stdout.strip()
+        lastmod = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", self._path],
+            stdout=subprocess.PIPE,
+            check=True,
+            universal_newlines=True,
+        ).stdout.strip()
         return datetime.fromisoformat(lastmod)
 
     @property
     def date(self):
-        if 'date' in self.metadata:
-            if type(self.metadata["date"]) not in [datetime, date]:
-                return dateparser.parse(self.metadata["date"])
-            else:
-                return self.metadata["date"]
-        return self.git_date
+        t = self.metadata.get("date")
+        if t is None:
+            return self.git_date
+        if isinstance(t, datetime):
+            return t
+        if isinstance(t, date):
+            return datetime.combine(t, datetime.min.time())
+
+        guess = dateparser.parse(str(t))
+        if guess is None:
+            raise ValueError(f"invalid date for page {self}: {t}")
+        return guess
 
     @property
     def title(self):
-        return self.metadata.get('title')
+        return self.metadata.get("title")
 
     @property
     def author(self):
-        return self.metadata.get('author')
+        return self.metadata.get("author")
 
     @property
     def description(self):
-        return self.metadata.get('description')
+        return self.metadata.get("description")
 
     @property
     def draft(self):
-        return self.metadata.get('draft')
+        return self.metadata.get("draft")
 
-    def __lt__(self, other):
-        return self.date.replace(tzinfo=timezone.utc) < other.date.replace(tzinfo=timezone.utc)
+    def __lt__(self, other: object):
+        if isinstance(other, Page):
+            return self.date.replace(tzinfo=timezone.utc) < other.date.replace(
+                tzinfo=timezone.utc
+            )
+        raise NotImplementedError
 
+    @override
     def __str__(self):
         return self.path
 
-def relpath(root_dir, path):
-    root_dir = Path(root_dir)
-    path     = Path(path)
-    relpath  = path.relative_to(root_dir)
 
-    if path == root_dir:
+def relpath(root_dir: str, path: str):
+    root_dir_p = Path(root_dir)
+    path_p = Path(path)
+    relpath = path_p.relative_to(root_dir_p)
+
+    if path_p == root_dir_p:
         raise ValueError("path and root_dir are the same!")
 
     if relpath.name in ["index.html", "index.md"]:
@@ -103,19 +116,22 @@ def relpath(root_dir, path):
             url = parent + os.sep
     else:
         url = relpath.as_posix()
-    return urllib.parse.quote(url)
 
-def get_blog_posts(source_dir):
+    return quote(url)
+
+
+def get_blog_posts(source_dir: str):
     posts = [Page(f) for f in glob(f"{source_dir}/*/index.md") if os.path.isfile(f)]
     posts = [p for p in posts if not p.draft]
     return sorted(posts, reverse=True)
 
-def get_pages(source_dir):
-    pages = []
-    for root, dirs, files in os.walk(source_dir):
+
+def get_pages(source_dir: str):
+    pages: list[Page] = []
+    for root, _dirs, files in os.walk(source_dir):
         for file in files:
             path = os.path.join(root, file)
-            if path.endswith('.md') or path.endswith('.html'):
+            if path.endswith(".md") or path.endswith(".html"):
                 exclude = False
                 for pattern in EXCLUDE_PATTERNS:
                     if fnmatch(path, pattern):
@@ -124,6 +140,6 @@ def get_pages(source_dir):
                 if exclude:
                     continue
                 page = Page(path)
-                if not page.draft: 
+                if not page.draft:
                     pages.append(page)
     return sorted(pages, reverse=True)

@@ -3,20 +3,25 @@
 import argparse
 import email.utils
 from datetime import datetime
+
 from lib import get_blog_posts
 
-parser = argparse.ArgumentParser('rss')
-parser.add_argument('BLOG_DIR', type=str, help='Directory containing markdown blog posts')
-parser.add_argument('--limit', default=15, type=int, help='Maximum number of posts to show')
-parser.add_argument('--title', help='Feed title', required=True)
-parser.add_argument('--description', help='Feed description', required=True)
-parser.add_argument('--url', help='Root URL', required=True)
-parser.add_argument('--blog-path', help='Blog path', required=True)
-parser.add_argument('--feed-path', help='RSS feed path', required=True)
+parser = argparse.ArgumentParser("rss")
+parser.add_argument(
+    "BLOG_DIR", type=str, help="Directory containing markdown blog posts"
+)
+parser.add_argument(
+    "--limit", default=15, type=int, help="Maximum number of posts to show"
+)
+parser.add_argument("--title", help="Feed title", required=True)
+parser.add_argument("--description", help="Feed description", required=True)
+parser.add_argument("--url", help="Root URL", required=True)
+parser.add_argument("--blog-path", help="Blog path", required=True)
+parser.add_argument("--feed-path", help="RSS feed path", required=True)
 args = parser.parse_args()
 
 posts = get_blog_posts(args.BLOG_DIR)
-posts = posts[0:args.limit]
+posts = posts[0 : args.limit]
 
 build_date = email.utils.format_datetime(datetime.now().astimezone())
 
@@ -33,16 +38,16 @@ print(f'''<?xml version="1.0"?>
 for post in posts:
     pub_date = email.utils.format_datetime(post.date.astimezone())
 
-    print(f'''  <item>
+    print(f"""  <item>
     <title>{post.title}</title>
     <link>{args.url}{post.href}</link>
     <guid>{args.url}{post.href}</guid>
-    <pubDate>{pub_date}</pubDate>''')
+    <pubDate>{pub_date}</pubDate>""")
 
     if post.description is not None:
-        print(f'    <description>{post.description}</description>')
+        print(f"    <description>{post.description}</description>")
 
-    print('  </item>')
+    print("  </item>")
 
-print('</channel>')
-print('</rss>')
+print("</channel>")
+print("</rss>")
