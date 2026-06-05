@@ -39,6 +39,6 @@ __BLOGLIST__
 
 ## Links
 - [Personal Blog](/blog/)
-- [Git Repo](https://git.sacredheartsc.com/)
+- [Git Repos](https://github.com/cullumsmith/)
 - [Curriculum Vitae](/cv/)
 - [FFmpeg Cheat Sheet](/misc/ffmpeg/)
