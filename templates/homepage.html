@@ -15,11 +15,33 @@
   <title>$title$</title>
   <script type="application/ld+json">
   {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "publisher": {"@id": "/#org"},
-  "name": "$title$",
-  "url": "$baseurl$/$relpath$"
+    "@context": "https://schema.org",
+    "@graph":
+    [
+      {
+        "@type": "Person",
+        "@id": "/#author",
+        "url": "$baseurl$/",
+        "image": "$baseurl$/$author-image$",
+        "name": "$author-name$",
+        "description": "$author-description$",
+        "email": "$author-email$",
+        "jobTitle": "$author-jobtitle$",
+        "gender": "$author-gender$",
+        "nationality": "$author-nationality$",
+        "sameAs": [
+          "https://x.com/$twitter$",
+          "https://www.facebook.com/$facebook$",
+          "https://www.instagram.com/$instagram$"
+        ]
+      }, {
+        "@type": "WebSite",
+        "@id": "/#website",
+        "author": {"@id": "/#author"},
+        "name": "$site-title$",
+        "url": "$baseurl$/"
+      }
+    ]
   }
   </script>
   <link rel="canonical" href="$baseurl$/$relpath$">
