@@ -18,7 +18,7 @@ All my source code is on GitHub:
 
 - GitHub: [cullumsmith](https://github.com/cullumsmith)
 
-If you're on the Fediverse, you can find me at [bsd.cafe](https://mastodon.bsd.cafe/about):
+If you're on the Fediverse, you can find me at [bsd.cafe](https://wiki.bsd.cafe/):
 
 - Mastodon: <a rel="me" href="https://mastodon.bsd.cafe/@cullum">@cullum@bsd.cafe</a>
 
