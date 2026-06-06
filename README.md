@@ -9,7 +9,7 @@ It consists of Markdown files and a custom static site generator using pandoc an
 - coreutils
 - python3
 - pandoc
-- BSD make
+- GNU make
 
 # Instructions
 
@@ -26,7 +26,7 @@ whatever naming convention and directory structure you like. Files ending in
 
 The `src/blog` directory is special. Markdown files in this directory are
 used to populate the front-page blog listing in [index.md](src/index.md).
-Before pandoc converts this file to HTML, the special string `__BLOG_LIST__`
+Before pandoc converts this file to HTML, the special string `__BLOGLIST__`
 is replaced with the output of [bloglist.py](scripts/bloglist.py).
 This Python script produces a date-sorted markdown list of all your blog posts.
 
@@ -48,7 +48,7 @@ Build the website by using the default target:
 
     make
 
-This will create a directory called `public` containing all your markdown files
+This will create a directory called `dist` containing all your markdown files
 rendered to HTML.
 
 You also can run a local webserver, which listens on port 8000, using:
