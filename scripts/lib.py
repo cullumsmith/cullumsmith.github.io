@@ -49,13 +49,17 @@ class Page:
 
     @property
     def git_date(self):
-        lastmod = subprocess.run(
+        fs_mtime = Path(self.path).stat().st_mtime
+        git_mtime = subprocess.run(
             ["git", "log", "-1", "--format=%cI", self._path],
             stdout=subprocess.PIPE,
             check=True,
             universal_newlines=True,
         ).stdout.strip()
-        return datetime.fromisoformat(lastmod)
+        try:
+            return datetime.fromisoformat(git_mtime)
+        except:
+            return datetime.fromtimestamp(fs_mtime).replace(microsecond=0).astimezone()
 
     @property
     def date(self):
@@ -90,9 +94,7 @@ class Page:
 
     def __lt__(self, other: object):
         if isinstance(other, Page):
-            return self.date.replace(tzinfo=timezone.utc) < other.date.replace(
-                tzinfo=timezone.utc
-            )
+            return self.date.astimezone() < other.date.astimezone()
         raise NotImplementedError
 
     @override
