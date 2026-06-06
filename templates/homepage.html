@@ -11,7 +11,7 @@
   <meta property="og:description" content="$description$">
   <meta property="og:image" content="$baseurl$/$social-image$">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@$twitter$">
+  <meta name="twitter:site" content="@$author-twitter$">
   <title>$title$</title>
   <script type="application/ld+json">
   {
@@ -30,9 +30,12 @@
         "gender": "$author-gender$",
         "nationality": "$author-nationality$",
         "sameAs": [
-          "https://x.com/$twitter$",
-          "https://www.facebook.com/$facebook$",
-          "https://www.instagram.com/$instagram$"
+          "https://x.com/$author-twitter$",
+          "https://www.facebook.com/$author-facebook$",
+          "https://www.instagram.com/$author-instagram$",
+          "https://github.com/$author-github$",
+          "https://www.linkedin.com/in/$author-linkedin$",
+          "$author-mastodon$"
         ]
       }, {
         "@type": "WebSite",

@@ -1,15 +1,18 @@
 ---
 baseurl: https://www.sacredheartsc.com
 site-title: Cullum Smith
+social-image: cullum.jpg
 author-name: Cullum Smith
 author-description: Gregorian chant and banjo enjoyer
 author-email: cullum@sacredheartsc.com
 author-image: cullum.jpg
 author-gender: Male
 author-nationality: us
-social-image: cullum.jpg
 author-jobtitle: Platform Engineer
-twitter: CullumSmith
-facebook: CullumSmith01
-instagram: dixiecatholic
+author-twitter: CullumSmith
+author-facebook: CullumSmith01
+author-instagram: dixiecatholic
+author-linkedin: cullumsmith
+author-github: cullumsmith
+author-mastodon: 'https://mastodon.bsd.cafe/\@cullum'
 ---
