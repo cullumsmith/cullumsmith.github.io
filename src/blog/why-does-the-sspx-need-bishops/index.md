@@ -94,7 +94,7 @@ Now, they have:
 - 264 seminarians,
 - 395 religious brothers and sisters,
 - and hundreds of thousands of lay faithful that depend on them for traditional
-  sacraments.
+  sacraments.[^1]
 
 And after witnessing the Francis pontificate and the death of half their bishops, the
 man to decide their fate within the structures of the Church is...Cardinal Tucho
@@ -109,3 +109,5 @@ Is there much reason to believe that the end result would be any different? No.
 
 And if you think the situation is less dire now than it was in 1988, you may want to do
 some research on the Overton Window.
+
+[^1]: [SSPX Statistics 2025](https://fsspx.news/en/news/sspx-statistics-2025-56151)
