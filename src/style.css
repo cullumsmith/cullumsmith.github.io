@@ -36,14 +36,8 @@ dt {
   font-weight: bold;
 }
 
-header .subtitle {
-  margin-top: -0.75em;
-  margin-bottom: 21.44px;
-}
-
 header .date {
   font-style: italic;
-  margin-bottom: 21.44px;
 }
 
 footer .date {
