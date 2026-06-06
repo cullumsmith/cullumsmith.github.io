@@ -22,7 +22,6 @@ Thanks for visiting my little website.
 
 - Email: [cullum@sacredheartsc.com](mailto:cullum@sacredheartsc.com)
 - Fediverse: <a rel="me" href="https://mastodon.bsd.cafe/@cullum">@cullum@bsd.cafe</a>
-- Matrix: [@cullum:sacredheartsc.com](https://matrix.to/#/@cullum:sacredheartsc.com)
 - GitHub: [cullumsmith](https://github.com/cullumsmith "cullumsmith")
 - Big Tech: [X](https://x.com/CullumSmith "@CullumSmith") |
             [Instagram](https://www.instagram.com/dixiecatholic/ "@dixiecatholic") |
