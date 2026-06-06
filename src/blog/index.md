@@ -1,8 +1,8 @@
 ---
 title: Blog
 heading: Cullum's Blog
-subtitle: Wrangling shell scripts from the terminal and quilismas from the choir loft.
-description: Wrangling shell scripts from the terminal and quilismas from the choir loft.
+subtitle: Wrangling scripts in the shell and quilismas in the choir loft.
+description: Wrangling scripts in the shell and quilismas in the choir loft.
 ---
 
 ::: bloglist
