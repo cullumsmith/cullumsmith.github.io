@@ -1,7 +1,7 @@
 ---
 title: Why does the SSPX need bishops?
 date: May 15, 2026
-description: The "experiment of tradition" lives on.
+description: The experiment of tradition lives on.
 ---
 
 Why does the SSPX need to consecrate bishops?
