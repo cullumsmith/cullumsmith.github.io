@@ -22,7 +22,7 @@ If you're on the Fediverse, you can find me at [bsd.cafe](https://wiki.bsd.cafe/
 
 - Mastodon: <a rel="me" href="https://mastodon.bsd.cafe/@cullum">@cullum@bsd.cafe</a>
 
-Or, if you prefer Big Tech:
+Or if you prefer Big Tech:
 
 - X: [@CullumSmith](https://x.com/CullumSmith)
 - Instagram: [@dixiecatholic](https://www.instagram.com/dixiecatholic/)
