@@ -12,6 +12,7 @@ You can also send a chat message:
 
 - XMPP: [cullum@sacredheartsc.com](xmpp:cullum@sacredheartsc.com?message)
 - Matrix: [@cullum:sacredheartsc.com](https://matrix.to/#/@cullum:sacredheartsc.com)
+- Telegram: [t.me/cullumsmith](https://t.me/cullumsmith)
 - IRC: [cullum on libera.chat](ircs://irc.libera.chat/cullum,isnick)
 
 All my source code is on GitHub:

@@ -14,5 +14,6 @@ author-facebook: CullumSmith01
 author-instagram: dixiecatholic
 author-linkedin: cullumsmith
 author-github: cullumsmith
+author-telegram: cullumsmith
 author-mastodon: 'https://mastodon.bsd.cafe/\@cullum'
 ---
