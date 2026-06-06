@@ -23,12 +23,11 @@ Thanks for visiting my little website.
 - Email: [cullum@sacredheartsc.com](mailto:cullum@sacredheartsc.com)
 - Fediverse: <a rel="me" href="https://mastodon.bsd.cafe/@cullum">@cullum@bsd.cafe</a>
 - Matrix: [@cullum:sacredheartsc.com](https://matrix.to/#/@cullum:sacredheartsc.com)
-- GPG: [0x5CAF6291](/gpg.asc)
+- GitHub: [cullumsmith](https://github.com/cullumsmith "cullumsmith")
 - Big Tech: [X](https://x.com/CullumSmith "@CullumSmith") |
             [Instagram](https://www.instagram.com/dixiecatholic/ "@dixiecatholic") |
             [Facebook](https://www.facebook.com/CullumSmith01 "CullumSmith01") |
-            [LinkedIn](https://www.linkedin.com/in/cullumsmith/ "in/cullumsmith") |
-            [GitHub](https://github.com/cullumsmith "cullumsmith")
+            [LinkedIn](https://www.linkedin.com/in/cullumsmith/ "in/cullumsmith")
 
 ## Recent Posts
 
