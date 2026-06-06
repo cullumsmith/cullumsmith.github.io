@@ -46,7 +46,7 @@ MKBLOGLIST          = $(SCRIPT_DIR)/bloglist.py
 INTERPOLATE         = sed -e '/$(1)/{r $(2)' -e 'd;}'
 RELPATH             = $(shell $(SCRIPT_DIR)/relpath.py $(OUTPUT_DIR) "$(1)")
 PANDOC              = pandoc \
-											  --defaults=$(PANDOC_CONFIG) \
+												--defaults=$(PANDOC_CONFIG) \
 												--include-in-header="$(DEFAULT_CSS)" \
 												--template="$(1)" \
 												--metadata="relpath:$(call RELPATH,$(2))" \
@@ -62,8 +62,9 @@ build: \
 	$(OUTPUT_MARKDOWN) \
 	$(OUTPUT_STATIC) \
 	$(OUTPUT_SITEMAP) \
-  $(OUTPUT_RSS)
+	$(OUTPUT_RSS)
 
+# All directories
 $(OUTPUT_DIRS):
 	mkdir -p $@
 
@@ -75,9 +76,11 @@ $(OUTPUT_DIR)/index.html: $(SOURCE_DIR)/index.md $(OUTPUT_BLOGLIST_SHORT) $(HOME
 $(OUTPUT_DIR)/cv/index.html: $(SOURCE_DIR)/cv/index.md $(OUTPUT_BLOGLIST_SHORT) $(CV_TEMPLATE) $(PANDOC_CONFIG) $(PANDOC_METADATA) $(DEFAULT_CSS)
 	$(call INTERPOLATE,$(BLOGLIST_REPLACE),$(OUTPUT_BLOGLIST_SHORT)) $< | $(call PANDOC,$(CV_TEMPLATE),$@)
 
+# Short blog listing
 $(OUTPUT_BLOGLIST_SHORT): $(SOURCE_BLOG) $(MKBLOGLIST)
 	$(MKBLOGLIST) $(SOURCE_DIR)/$(BLOG_DIR) $(BLOG_LIST_LIMIT) > $@
 
+# Full blog listing
 $(OUTPUT_BLOGLIST): $(SOURCE_BLOG) $(MKBLOGLIST)
 	$(MKBLOGLIST) $(SOURCE_DIR)/$(BLOG_DIR) > $@
 
@@ -101,7 +104,7 @@ $(OUTPUT_DIR)/%.html: $(SOURCE_DIR)/%.md $(DEFAULT_TEMPLATE) $(PANDOC_CONFIG) $(
 $(OUTPUT_DIR)/%: $(SOURCE_DIR)/%
 		$(CP) $< $@
 
-.PHONY: serve clean
+.PHONY: serve clean rsync deps
 serve: build
 		cd $(OUTPUT_DIR) && python3 -m http.server
 
@@ -111,3 +114,5 @@ clean:
 rsync: build
 	rsync -rlphv --delete ${OUTPUT_DIR}/ ${RSYNC_TARGET}
 
+deps:
+	pip install -r requirements.txt
