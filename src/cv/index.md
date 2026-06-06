@@ -1,15 +1,15 @@
 ---
-title: "Cullum Smith: CV"
+title: CV
 heading: Cullum Smith
 subtitle: Curriculum Vitae
-description: "CV of Cullum Smith: Site Reliability Engineer in South Carolina"
+description: Cullum Smith is a Linux Platform Engineer located in South Carolina.
 date: July 1, 2024
 ---
 
 [cullum@sacredheartsc.com](mailto:cullum@sacredheartsc.com){.right}
 SRE • Trading Systems • Linux/Unix
 
-Site reliability engineer specializing in the programming, administration, and
+Linux platform engineer specializing in the programming, administration, and
 troubleshooting of production Linux systems within trading platforms. 9+ years
 of development and operations experience. Strong skills in Unix internals, shell
 scripting, system administration, and debugging, from userspace to the kernel.
