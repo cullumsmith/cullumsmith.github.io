@@ -2,7 +2,7 @@ BASE_URL           = https://www.sacredheartsc.com
 STATIC_REGEX       = .*\.(html|jpg|jpeg|png|xml|txt|ico|webmanifest|svg|asc)
 BLOG_LIST_LIMIT    = 3
 FEED_TITLE         = Cullum Smith's Blog
-FEED_DESCRIPTION   = Self-hosting, Unix, sacred music, and more.
+FEED_DESCRIPTION   = Wrangling shell scripts from the terminal and quilismas from the choir loft.
 
 RSYNC_TARGET       = www1.idm.sacredheartsc.com:/usr/local/www/vhosts/www.sacredheartsc.com/
 
