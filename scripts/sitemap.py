@@ -13,6 +13,6 @@ print('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
 for page in get_pages(source_dir):
     print("  <url>")
     print(f"    <loc>{baseurl}{page.href}</loc>")
-    print(f"    <lastmod>{page.git_date}</lastmod>")
+    print(f"    <lastmod>{page.git_date.isoformat()}</lastmod>")
     print("  </url>")
 print("</urlset>")
