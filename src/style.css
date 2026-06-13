@@ -153,4 +153,8 @@ details {
   max-width: 100%;
   object-fit: contain;
 }
+
+.center img {
+  max-width: 100%
+}
 </style>
