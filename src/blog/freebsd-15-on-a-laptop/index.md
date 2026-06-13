@@ -1,7 +1,7 @@
 ---
 title: FreeBSD 15 on a Laptop
 date: June 10, 2026
-description: KDE 6, on a real Unix!
+description: A guide to installing KDE 6 on a real Unix!
 social-image: blog/freebsd-15-on-a-laptop/kde6.png
 draft: true
 ---
