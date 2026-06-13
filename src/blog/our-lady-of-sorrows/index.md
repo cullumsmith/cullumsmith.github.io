@@ -2,6 +2,7 @@
 title: Our Lady of Sorrows
 date: September 14, 2024
 description: Stabant juxta crucem Jesu mater ejus.
+social-image: blog/our-lady-of-sorrows/alleluia.png
 ---
 
 This Sunday the Church celebrates Our Lady of Sorrows. This feast was originally

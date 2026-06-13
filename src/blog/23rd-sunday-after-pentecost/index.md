@@ -2,6 +2,7 @@
 title: Out of the Depths
 date: November 8, 2024
 description: Reflections on the 23rd Sunday after Pentecost
+social-image: blog/23rd-sunday-after-pentecost/communion.png
 ---
 
 Beginning with the 23rd Sunday after Pentecost, we hear the same chants every Sunday

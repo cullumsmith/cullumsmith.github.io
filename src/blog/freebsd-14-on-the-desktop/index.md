@@ -2,6 +2,7 @@
 title: FreeBSD 14 on the Desktop
 date: November 20, 2024
 description: KDE 5 on your laptop, using a real Unix!
+social-image: blog/freebsd-14-on-the-desktop/kde5.jpg
 ---
 
 After [much deliberation](../reevaluating-rhel/), I finally decided to migrate my entire

@@ -1,7 +1,7 @@
 ---
 title: FreeBSD 15 on a Laptop
 date: June 10, 2026
-description: A guide to installing KDE 6 on a real Unix!
+description: A guide to installing FreeBSD on a laptop with KDE 6.
 social-image: blog/freebsd-15-on-a-laptop/kde6-small.png
 draft: true
 ---
