@@ -12,7 +12,7 @@ It's always been a great operating system for servers, but with the arrival of
 [pkgbase](https://wiki.freebsd.org/action/show/pkgbase), massive improvements to the
 [LinuxKPI](https://wiki.freebsd.org/LinuxKPI) drivers, and the launch of the [Laptop
 Support and Usability Project](https://github.com/FreeBSDFoundation/proj-laptop), it's
-becoming quite usable as a primary desktop!
+become my primary desktop.
 
 Since [my last attempt](/blog/freebsd-14-on-the-desktop/) with FreeBSD 14, a lot has
 changed:
@@ -21,16 +21,33 @@ changed:
 - Wayland is now working
 - Intel WiFi gained full support (no more 802.11g!)
 
-There's also a new [Laptop Compatibility
-Matrix](https://freebsdfoundation.github.io/freebsd-laptop-testing/) where you can learn
-what works on your hardware.
+I'm using a ThinkPad X1 Carbon, but there's also a new [Laptop Compatibility
+Matrix](https://freebsdfoundation.github.io/freebsd-laptop-testing/) where you can see
+what's working on your hardware.
 
-Let's build a FreeBSD laptop system with KDE. This guide will assume you're using Intel
+Let's build a FreeBSD laptop system with KDE! This guide will assume you're using Intel
 graphics with an Intel wireless chipset.
 
 [![](kde6.png "KDE Plasma 6 on FreeBSD")](kde6.png){.center}
 
 ## Installation
+
+Grab a [FreeBSD 15.1 memstick
+image](https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/15.1/FreeBSD-15.1-RELEASE-amd64-memstick.img)
+and `dd` it to a USB stick:
+
+```bash
+curl -OJ https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/15.1/FreeBSD-15.1-RELEASE-amd64-memstick.img
+sudo dd if=FreeBSD-15.1-RELEASE-amd64-memstick.img of=/dev/sdX bs=1M conv=sync
+```
+
+The installation wizard is straightforward. Make sure your system is configured for UEFI
+boot, and select `ZFS (GPT)` for the disk layout.
+
+When prompted for base system installation type, choose `Packages` to get the new
+[pkgbase](https://wiki.freebsd.org/action/show/pkgbase) goodness.
+
+Once you reboot, login as root using the password you specified during installation.
 
 ## Devices, Drivers, and Tuning
 
