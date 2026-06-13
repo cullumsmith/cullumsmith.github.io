@@ -1,6 +1,6 @@
 ---
 title: Cullum Smith
-description: Cullum Smith is a software professional and amatuer musician located in South Carolina.
+description: Cullum is a software professional and amateur musician located in South Carolina.
 ---
 
 I'm a platform engineer located in South Carolina.
