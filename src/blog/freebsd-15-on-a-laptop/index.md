@@ -341,7 +341,7 @@ sysrc -v kld_list+="i915kms"
 ### Device Permissions via devfs
 
 For desktop systems, you'll need a custom [devfs(8)](https://man.freebsd.org/cgi/man.cgi?devfs(8)) ruleset to allow unprivileged users to
-control common hardware devices. Create [devfs.rules](https://man.freebsd.org/cgi/man.cgi?devfs.rules) with the following:
+control common hardware devices. Create [devfs.rules(5)](https://man.freebsd.org/cgi/man.cgi?devfs.rules) with the following:
 
 ```ini
 # /etc/devfs.rules
@@ -578,7 +578,7 @@ service pf start
 ## Disable Periodic Scripts
 
 Out of the box, FreeBSD includes a lot of [periodic(8)](https://man.freebsd.org/cgi/man.cgi?periodic)
-scripts that churn throughyour hard disk, reach out to the internet, and send emails. You can check
+scripts that churn through your hard disk, reach out to the Internet, and send emails. You can check
 [periodic.conf(5)](https://man.freebsd.org/cgi/man.cgi?periodic.conf) for a full list.
 
 Some of these jobs are useful, but for a typical desktop user, most of them can be safely disabled:
@@ -814,7 +814,7 @@ service dbus start
 
 ## Configure Ly Display Manager
 
-Typically you'd install a graphical display manager like [sddm](https://github.com/sddm/sddm)
+Typically you'd install a graphical display manager like [SDDM](https://github.com/sddm/sddm)
 to launch your desktop sessions.
 
 Unfortunately, at the time of this writing, none of those display managers are able to reliably
@@ -997,14 +997,14 @@ pkg install                \
 Some applications may need additional configuration to take advantage of the
 hardware offload.
 
-## Chromium Browser
+### Chromium Browser
 
 Chrome used to require a scary incantation of command line flags to get hardware
 video decoding working on FreeBSD.
 
 But at the time of this writing, it *just works*.
 
-## MPV
+### MPV
 
 The following `mpv.conf` gives me HD video playback with minimal CPU usage:
 
@@ -1027,12 +1027,12 @@ working. Your mileage may vary, depending on your hardware!
 Once KDE is running, the desktop environment listens for ACPI lid events and should handle
 suspend and resume for you out of the box.
 
-Unfortunately, this behavior had a very annoying bug on my ThinkPad, where after I would
-open the lid, the laptop would immediately re-suspend after a few seconds.
+Unfortunately, this functionality has a [very annoying bug](https://forums.freebsd.org/threads/freebsd-15-kde-laptop-immediately-suspends-again-after-resume.101870/)
+on my ThinkPad, where after I would open the lid, the laptop would immediately suspend itself again!
 
-As a workaround, I disabled the lid switch behavior in KDE power settings and configured
-suspend on lid close natively using `devd`. This has the added benefit of being able to easily
-suspend the laptop when KDE isn't running.
+As a workaround, I disabled the lid switch behavior in KDE's power settings and configured
+suspend on lid close natively using `devd`. This has the added benefit of being able to
+close the laptop lid when KDE isn't running.
 
 First, write a small script to handle locking the screen and suspending the device:
 
@@ -1099,8 +1099,9 @@ Chromium is especially annoying: it sometimes gets trapped in a crazy
 state where it consumes 100% of a CPU core forever.
 
 I imagine the KDE developers are mostly concerned with systemd-based Linux distributions,
-where `logind`` ensures that all processes associated with a user session are forcibly killed
-when the user logs out.
+where [systemd-logind](https://www.freedesktop.org/software/systemd/man/latest/systemd-logind.service.html)
+ensures all processes associated with a user session are terminated
+when a session is closed.
 
 Luckily, KDE has the ability to run a cleanup script whenever anyone logs out.
 Create the following directory:
@@ -1146,7 +1147,7 @@ chmod +x /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh
 Desktop user switching is broken on FreeBSD due to a longstanding
 [ConsoleKit2 bug](bugs.freebsd.org/bugzilla/show_bug.cgi?id=221452).
 
-To prevent users from event attempting it, you can disable KDE user
+To prevent users from even attempting it, you can disable KDE user
 switching globally in the `kdeglobals` file:
 
 ```ini
@@ -1234,8 +1235,9 @@ pkg install drm-66-kmod
 
 ### Graphics acceleration broken after suspend
 
-There is a known issue with some graphics cards that breaks graphics
+There is a known issue with some cards that breaks graphics
 acceleration whenever you switch between virtual consoles.
+
 Because FreeBSD performs a VT switch after resuming from sleep, this puts your
 DRM device in limp mode after resume.
 
@@ -1249,8 +1251,9 @@ Be sure to add that to `/etc/sysctl.conf`.
 
 ### No console idle timeout (DPMS)
 
-A few years ago, FreeBSD switched from the old `syscons(8)` console driver to the
-new UEFI-native `vt(4)` console.
+A few years ago, FreeBSD switched from the old [syscons(4)](https://man.freebsd.org/cgi/man.cgi?syscons)
+console driver to the new UEFI-native
+[vt(4)](https://man.freebsd.org/cgi/man.cgi?vt) driver.
 
 Unfortunately, [no one bothered](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=233356)
 to add `blanktime` support to the `vt` console, so there's effectively no way
@@ -1264,7 +1267,7 @@ prompt into your LCD panel!
 ### GTK4 apps missing icons
 
 The only GTK4 app I use is the [Dino IM](https://dino.im/) XMPP client.
-I noticed that many icons failed to render, and the app did not respect
+I noticed that many icons failed to render, and the app didn't respect
 my KDE font settings.
 
 After way too much debugging, I discovered that disabling [portals](https://docs.flatpak.org/en/latest/desktop-integration.html#portals)
