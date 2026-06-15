@@ -1234,22 +1234,6 @@ A reliable workaround is to simply continue using the previous version:
 pkg install drm-66-kmod
 ```
 
-### Graphics acceleration broken after suspend
-
-There is a known issue with some cards that breaks graphics
-acceleration whenever you switch between virtual consoles.
-
-Because FreeBSD performs a VT switch after resuming from sleep, this puts your
-DRM device in limp mode after resume.
-
-Luckily, this behavior can be disabled with a simple sysctl:
-
-```bash
-sysctl kern.vt.suspendswitch=0
-```
-
-Be sure to add that to `/etc/sysctl.conf`.
-
 ### No console idle timeout (DPMS)
 
 A few years ago, FreeBSD switched from the old [syscons(4)](https://man.freebsd.org/cgi/man.cgi?syscons)
