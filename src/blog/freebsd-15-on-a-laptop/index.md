@@ -291,7 +291,7 @@ will manage your WiFi networks. You can either edit
 pkg install networkmgr sudo
 ```
 
-Note that `networkmgr` requires superuser privileges. You can allow all memebers of the `operator`
+Note that `networkmgr` requires superuser privileges. You can allow all members of the `operator`
 group to run `networkmgr` without a password using `sudo`:
 
 ```bash
