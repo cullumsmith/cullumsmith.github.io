@@ -322,7 +322,9 @@ cpu_microcode_name="/boot/firmware/intel-ucode.bin"
 You can save a **lot** of battery (and heat) by enabling lower CPU C-states:
 
 ```bash
-sysrc -v performance_cx_lowest=Cmax economy_cx_lowest=Cmax
+sysrc -v \
+  performance_cx_lowest=Cmax \
+  economy_cx_lowest=Cmax
 ```
 
 With modern Intel processors, it is no longer necessary to run [powerd(8)](https://man.freebsd.org/cgi/man.cgi?powerd).
