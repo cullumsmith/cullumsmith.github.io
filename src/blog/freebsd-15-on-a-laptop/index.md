@@ -20,6 +20,8 @@ changed:
 - Wayland is now working
 - Intel WiFi gained full support (not stuck on 802.11g!)
 
+[![](kde6.png "KDE Plasma 6 on FreeBSD")](kde6.png){.center}
+
 I'm getting about 6-7 hours of battery life with my ThinkPad X1 Carbon.
 Other than Bluetooth (which I have not attempted), everything on my device
 functions well with FreeBSD.
@@ -34,7 +36,6 @@ This guide assumes you're using Intel graphics with an Intel wireless chipset.
 I'm sure that other hardware configurations work fine, but I'm sticking with firsthand
 experience here.
 
-[![](kde6.png "KDE Plasma 6 on FreeBSD")](kde6.png){.center}
 
 ## Installation
 
