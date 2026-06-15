@@ -20,8 +20,7 @@ changed:
 - Wayland is now working
 - Intel WiFi gained full support (not stuck on 802.11g!)
 
-I'm using a ThinkPad X1 Carbon, and with the steps in this guide, I'm getting
-6-7 hours of battery life.
+I'm getting about 6-7 hours of battery life with my ThinkPad X1 Carbon.
 Other than Bluetooth (which I have not attempted), everything on my device
 functions well with FreeBSD.
 
