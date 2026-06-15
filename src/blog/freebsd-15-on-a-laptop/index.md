@@ -987,10 +987,10 @@ With the right packages installed, most Intel GPUs support hardware video accele
 This will give you much smoother video playback and better battery life!
 
 ```bash
-pkg install \
+pkg install                \
   libva-intel-media-driver \
-  libva-utils \
-  libvdpau-va-gl \
+  libva-utils              \
+  libvdpau-va-gl           \
   vdpauinfo
 ```
 
