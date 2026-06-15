@@ -830,8 +830,8 @@ launch Wayland sessions:
 pkg install ly
 ```
 
-Ly doesn't run as a daemon. Instead, you'll need to update `/etc/ttys` to launch it
-on a virtual console after system boot:
+Ly doesn't run as a daemon. Instead, you'll need to update [/etc/ttys](https://man.freebsd.org/cgi/man.cgi?ttys)
+to launch it on a virtual console after system boot:
 
 ```diff
 --- /etc/ttys    2026-06-15 09:11:43.272063000 -0400
@@ -847,7 +847,8 @@ on a virtual console after system boot:
  ttyv4   "/usr/libexec/getty Pc"         xterm   onifexists secure
 ```
 
-Now we just need to update `gettytab` with an entry for Ly:
+Now we just need to update [gettytab(5)](https://man.freebsd.org/cgi/man.cgi?gettytab)
+with an entry for Ly:
 
 ```diff
 --- /etcgettytab    2026-06-15 09:31:56.348452000 -0400
