@@ -343,7 +343,7 @@ group to run `networkmgr` without a password using `sudo`:
 %operator ALL=NOPASSWD: /usr/local/bin/networkmgr
 ```
 
-Note: There is currently a [known issue](wifi-broken-after-suspend) with suspend
+Note: There is currently a [known issue](#wifi-broken-after-suspend) with suspend
 and resume using the `iwlwifi` driver on 15.1-RELEASE. I have a workaround though!
 
 ### CPU Microcode
