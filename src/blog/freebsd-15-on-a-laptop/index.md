@@ -59,6 +59,48 @@ to type everything manually into a virtual console!
 
 Once you reboot, login as root using the password you specified during installation.
 
+## Get the Latest Packages
+
+The FreeBSD ports tree has two branches: `quarterly` and `latest`.
+
+The `quarterly` branch is basically a snapshot of the ports tree, taken four
+times per year. In between quarterly snapshots, third-party packages receive only critical
+security patches.
+
+The `latest` branch is a rolling release that receives major package updates as
+soon as they become available.
+
+Personally, I prefer to take updates as they come, rather than deal with
+a big pile of breaking changes four times a year.
+
+FreeBSD ships with the `quarterly` repository configured by default. If you'd like to switch to `latest`,
+then create an override directory:
+
+```bash
+mkdir -p /usr/local/etc/pkg/repos
+```
+
+Then create the following file:
+
+```perl
+# /usr/local/etc/pkg/repos/FreeBSD.conf
+
+FreeBSD-ports: {
+  url: "pkg+https://pkg.FreeBSD.org/${ABI}/latest"
+}
+
+FreeBSD-ports-kmods: {
+    url: "pkg+https://pkg.FreeBSD.org/${ABI}/kmods_latest_${VERSION_MINOR}",
+}
+```
+
+Finally, update your system:
+
+```bash
+pkg update
+pkg upgrade
+```
+
 ## Hardware Devices, Drivers, and Tuning
 
 First, we'll configure device drivers and make various tweaks to get optimum performance
