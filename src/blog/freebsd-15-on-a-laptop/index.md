@@ -328,7 +328,8 @@ sysrc -v wlans_iwlwifi0="wlan0" \
 
 With those settings, [wpa_supplicant(8)](https://man.freebsd.org/cgi/man.cgi?wpa_supplicant)
 will manage your WiFi networks. You can either edit
-[wpa_supplicant.conf(5)](https://man.freebsd.org/cgi/man.cgi?wpa_supplicant.conf(5)) by hand, or use the graphical interface provided by `networkmgr`:
+[wpa_supplicant.conf(5)](https://man.freebsd.org/cgi/man.cgi?wpa_supplicant.conf(5)) by hand, or use the graphical interface provided by
+[networkmgr](https://github.com/ghostbsd/networkmgr):
 
 ```bash
 pkg install networkmgr sudo
