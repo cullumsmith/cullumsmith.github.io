@@ -567,10 +567,11 @@ case $1 in
 esac
 ```
 
-Don’t forget to make it executable:
+Don’t forget to make it executable and restart devd:
 
 ```bash
 chmod 755 /usr/local/libexec/thinkpad-brightness
+service devd restart
 ```
 
 ### Reboot
