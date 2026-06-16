@@ -685,12 +685,12 @@ You'll need a local user account. Be sure to add yourself to the `operator`,
 `video`, and `wheel` groups:
 
 ```bash
-pw useradd               \
-  -n gsarto              \
-  -c 'Giuseppe M. Sarto' \
-  -s /bin/sh             \
-  -M 700                 \
-  -d /home/gsarto        \
+pw useradd                \
+  -n gsarto               \
+  -c 'Giuseppe M. Sarto'  \
+  -s /bin/sh              \
+  -M 700                  \
+  -d /home/gsarto         \
   -G operator,video,wheel
 ```
 
