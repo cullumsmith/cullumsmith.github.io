@@ -861,7 +861,7 @@ service dbus start
 
 ## Configure Ly Display Manager
 
-Typically you'd install a graphical display manager like [SDDM](https://github.com/sddm/sddm)
+Typically you'd use a graphical display manager like [SDDM](https://github.com/sddm/sddm)
 to launch your desktop sessions.
 
 Unfortunately, at the time of this writing, none of those display managers are able to reliably
