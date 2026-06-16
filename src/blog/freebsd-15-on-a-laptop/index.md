@@ -283,7 +283,8 @@ hw.snd.latency=7
 
 Poor WiFi support is mostly a thing of the past, thanks to [LinuxKPI](https://wiki.freebsd.org/LinuxKPI)
 and the new [iwlwifi](https://wiki.freebsd.org/WiFi/Iwlwifi) driver.
-If you have one of the common Intel cards, chances are it will just work.
+Check the [list of supported cards](https://wiki.freebsd.org/WiFi/Iwlwifi/Chipsets) to
+see if your wireless card is supported.
 
 First, install the necessary firmware package for your wireless card:
 
@@ -389,13 +390,13 @@ control common hardware devices. Create [devfs.rules(5)](https://man.freebsd.org
 # /etc/devfs.rules
 
 [localrules=1000]
-add path 'drm/*'       mode 0660 group operator
+add path 'drm/*'       mode 0660 group video
+add path 'video*'      mode 0660 group video
 add path 'backlight/*' mode 0660 group operator
-add path 'video*'      mode 0660 group operator
 add path 'usb/*'       mode 0660 group operator
 ```
 
-And set your default ruleset like so:
+Make sure to set your default ruleset like so:
 
 ```bash
 sysrc -v devfs_system_ruleset=localrules
@@ -677,8 +678,8 @@ sysrc -v -f /etc/periodic.conf          \
 
 ## Create a User Account
 
-You'll need a local user account. Be sure to add yourself to the `operator`
-and `wheel` groups:
+You'll need a local user account. Be sure to add yourself to the `operator`,
+`video`, and `wheel` groups:
 
 ```bash
 pw useradd               \
@@ -687,10 +688,11 @@ pw useradd               \
   -s /bin/sh             \
   -M 700                 \
   -d /home/gsarto        \
-  -G operator,wheel
+  -G operator,video,wheel
 ```
 
-You'll probably want to install `sudo`:
+The `wheel` group allows you to run commands as root using `sudo`,
+but you'll have to install it first:
 
 ```bash
 pkg install sudo
@@ -1036,6 +1038,9 @@ pkg install                \
   libvdpau-va-gl           \
   vdpauinfo
 ```
+
+For this to work, your user will need access to the GPU via the `drm` device,
+so make sure you've added yourself to the `video` group.
 
 Some applications may need additional configuration to take advantage of the
 hardware offload.
