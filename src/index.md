@@ -23,10 +23,7 @@ Thanks for visiting my little website.
 - Email: [cullum@sacredheartsc.com](mailto:cullum@sacredheartsc.com)
 - Mastodon: <a rel="me" href="https://mastodon.bsd.cafe/@cullum">@cullum@bsd.cafe</a>
 - GitHub: [cullumsmith](https://github.com/cullumsmith "cullumsmith")
-- Big Tech: [X](https://x.com/CullumSmith "@CullumSmith") |
-            [Instagram](https://www.instagram.com/dixiecatholic/ "@dixiecatholic") |
-            [Facebook](https://www.facebook.com/CullumSmith01 "CullumSmith01") |
-            [LinkedIn](https://www.linkedin.com/in/cullumsmith/ "in/cullumsmith")
+- [LinkedIn](https://www.linkedin.com/in/cullumsmith/ "in/cullumsmith")
 
 ## Recent Posts
 
