@@ -70,9 +70,10 @@ There are very few bishops remaining who were consecrated in the Old Rite.
 The bishops currently providing ordination to the FSSP, ICKSP, etc. were consecrated
 using the Novus Ordo formula, and in the context of the *Novus Ordo Missae*.
 
-I'm not here to argue about validity of the Novus Ordo episcopal consecrations — but
-there's obvious value for a group like the SSPX to maintain continuity with the
-traditional episcopal rites for the bishops that serve them.
+There's obvious value for a group like the SSPX to maintain continuity with the
+traditional episcopal rites for the bishops that serve them. In fact, it's pretty
+much the only time you'll see the traditional rite of consecration in the Church
+these days.
 
 ## So, what now?
 
@@ -97,8 +98,8 @@ Now, they have:
   sacraments.[^1]
 
 And after witnessing the Francis pontificate and the death of half their bishops, the
-man to decide their fate within the structures of the Church is...Cardinal Tucho
-Fernandez.
+man to decide their fate within the structures of the Church is Cardinal Tucho
+Fernandez, the very architect of their recent concerns!
 
 Given the current state of the Church, accepting a future without SSPX bishops is
 tantamount to informing all their priests and faithful that "it's over."
@@ -106,8 +107,5 @@ tantamount to informing all their priests and faithful that "it's over."
 Do I wish they had "tried harder" to negotiate this time? Yes.
 
 Is there much reason to believe that the end result would be any different? No.
-
-And if you think the situation is less dire now than it was in 1988, you may want to do
-some research on the Overton Window.
 
 [^1]: [SSPX Statistics 2025](https://fsspx.news/en/news/sspx-statistics-2025-56151)

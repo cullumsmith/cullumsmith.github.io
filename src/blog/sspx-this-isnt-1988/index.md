@@ -30,7 +30,7 @@ of continuity betrayed his desire for some kind of post-conciliar course
 correction. Reconciliation with the SSPX was a big part of that, as evidenced
 by Summorum Pontificum and the lifting of the 1988 excommunications.
 
-But under Francis, the hermeneutic of continuity died — and the eulogy was
+But under Francis, the hermeneutic of continuity seemed to die with
 Traditionis Custodes. And to make matters worse, the cardinals he appointed
 make a future Benedict XVII exceedingly unlikely.
 
@@ -53,7 +53,7 @@ In 1988, there was collegiality, ecumenism, religious liberty, and of course,
 the Novus Ordo Missae to deal with. The most scandalous event in recent memory
 was the Assisi meeting.
 
-A reconciliation in The Big '26 would mean resolving all those original issues,
+A reconciliation in 2026 would mean resolving all those original issues,
 PLUS Traditionis Custodes, Mater Populi Fidelis, Fiducia Supplicans, Amoris
 Laetitia, the Abu Dhabi declaration...to say nothing of the many public
 scandals that have hardened so many hearts since 1988.
@@ -66,7 +66,7 @@ TLMs that have escaped Traditionis Custodes unscathed.
 Of course, anyone who's been in traditionalist circles for a while knows that
 the Missal is just the tip of the iceberg. Still, the existence of "safe,
 legal, and rare" traditionalist ghettos does a lot to neuter the opposition: If
-you've got a comfortable longhouse where you can just pretend the Novus Ordo
+you've got a comfortable bunker you can just pretend the Novus Ordo
 doesn't exist, why rock the boat? (You aren't a schismatic, are you?)
 
 All of that to say...even if the Vatican attempts a copy-paste on John Paul
