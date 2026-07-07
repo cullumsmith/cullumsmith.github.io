@@ -23,7 +23,7 @@ priests, and to do this requires a bishop.
 
 Unfortunately, the SSPX continues to be Church's loudest critic of Vatican II — the
 council that somehow changed both nothing and everything at the same time, and by which
-the Church now seeks to define herself.
+the Church now seems to want to define herself.
 
 Consequently, the SSPX is the third rail of the entire conciliar milieu. Archbishop
 Lefebvre was forbidden to ordain priests in 1976, but continued doing so. No conciliar
