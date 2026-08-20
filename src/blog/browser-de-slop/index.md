@@ -29,7 +29,7 @@ Here's a few that I'm aware of:
 | MacOS | Firefox |
 
 Allegedly, these policies are also supported on Windows via Group Policy and MacOS using `plist` files.
-I wouldn't know, as I use a real operating system.
+I wouldn't know, since I use a real operating system.
 
 
 ## Firefox
