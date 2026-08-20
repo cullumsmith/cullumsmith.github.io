@@ -4,11 +4,10 @@ description: Disable AI slop and bloatware in Chrome and Firefox.
 date: August 20, 2026
 ---
 
-Modern browsers ship with an increasing amount of bloatware.
+Modern browsers ship with an insane amount of bloatware.
 
 You can point and click in the browser settings to disable most of it.
-Or, you can forcibly de-slop the browser for all users on the machine automatically
-using a policy file.
+Or, you can de-slop the browser by force using a policy file.
 
 ## Policy File Locations
 
@@ -233,7 +232,7 @@ settings to make sure they're right for you. My configuration here does a few th
 - Disables telemetry
 - Installs and configures [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh?hl=en&pli=1)
 - Disables browser sync and nagging messages to sign-in
-- Disables DNS-over-HTTPS
+- Disables DNS-over-HTTSP
 - Disables built-in password manager (I use [Bitwarden](https://bitwarden.com/))
 - Sets default search engine to [DuckDuckGo](https://duckduckgo.com/)
 - Disables search suggestions
