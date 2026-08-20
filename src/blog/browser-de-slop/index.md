@@ -25,8 +25,11 @@ Here's a few that I'm aware of:
 | RedHat | Firefox | `/etc/firefox/policies/policies.json` |
 | Arch | Chromium | `/etc/chromium/policies/managed/policies.json` |
 | Arch | Firefox | `/etc/firefox/policies/policies.json` |
+| MacOS | Chrome | `/Library/Managed Preferences/com.google.Chrome.plist` |
+| MacOS | Firefox |
 
-Allegedly, these policies are also supported on MacOS using `plist` files.
+Allegedly, these policies are also supported on Windows via Group Policy and MacOS using `plist` files.
+I wouldn't know, as I use a real operating system.
 
 
 ## Firefox
