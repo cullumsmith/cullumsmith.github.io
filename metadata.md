@@ -1,7 +1,7 @@
 ---
 baseurl: https://www.sacredheartsc.com
 site-title: Cullum Smith
-social-image: cullum.jpg
+social-image: cullum-small.jpg
 author-name: Cullum Smith
 author-description: Gregorian chant and banjo enjoyer
 author-email: cullum@sacredheartsc.com
