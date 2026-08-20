@@ -26,6 +26,9 @@ Here's a few that I'm aware of:
 | Arch | Chromium | `/etc/chromium/policies/managed/policies.json` |
 | Arch | Firefox | `/etc/firefox/policies/policies.json` |
 
+Allegedly, these policies are also supported on MacOS using `plist` files.
+
+
 ## Firefox
 
 You should [read the docs](https://mozilla.github.io/policy-templates/) for each option
