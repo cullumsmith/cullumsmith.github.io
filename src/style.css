@@ -14,6 +14,15 @@ body {
   font-family: "PT Sans", "Myriad Pro", "Trebuchet MS", Helvetica, sans-serif;
 }
 
+th, td {
+  padding-right: 1em;
+  text-align: left;
+}
+
+th:last-child, td:last-child {
+  padding-right: 0;
+}
+
 a {
   text-decoration: none;
   color: #0074D9
