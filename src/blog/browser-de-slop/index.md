@@ -232,7 +232,7 @@ settings to make sure they're right for you. My configuration here does a few th
 - Disables telemetry
 - Installs and configures [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh?hl=en&pli=1)
 - Disables browser sync and nagging messages to sign-in
-- Disables DNS-over-HTTSP
+- Disables DNS-over-HTTPS
 - Disables built-in password manager (I use [Bitwarden](https://bitwarden.com/))
 - Sets default search engine to [DuckDuckGo](https://duckduckgo.com/)
 - Disables search suggestions
