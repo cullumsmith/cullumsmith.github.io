@@ -239,7 +239,7 @@ settings to make sure they're right for you. My configuration here does a few th
 
 Unfortunately, Chrome does not support adding custom certificate authorities via the policy file anymore
 (I resorted to some [hacky automation](https://github.com/cullumsmith/infrastructure/blob/master/files/usr/local/libexec/nss-trust-root-ca.common)
-that adds the certificate to the user's `~/.pki/nssdb` on first login.)
+that adds the certificate to the user's `~/.pki/nssdb` on first login).
 
 ```json
 {
