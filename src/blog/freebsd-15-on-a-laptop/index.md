@@ -861,75 +861,32 @@ sysrc -v dbus_enable=YES
 service dbus start
 ```
 
-## Configure Ly Display Manager
+## Configure SDDM
 
-Typically you'd use a graphical display manager like [SDDM](https://github.com/sddm/sddm)
-to launch your desktop sessions.
+The [longstanding bug](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=286592) preventing
+SDDM from launching Wayland sessions has finally been fixed, so it is no longer
+necessary to use [ly](https://codeberg.org/fairyglade/ly).
 
-Unfortunately, at the time of this writing, none of those display managers are able to reliably
-start a Wayland session on FreeBSD.
-
-SDDM can almost do it, but there is a [bug](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=286592)
-that causes various key combinations to exit your session.
-
-The current wisdom is to use the console-based [Ly display manager](https://codeberg.org/fairyglade/ly) to
-launch Wayland sessions:
+First, install SDDM:
 
 ```bash
-pkg install ly
+pkg install sddm
 ```
 
-Ly doesn't run as a daemon. Instead, you'll need to update [/etc/ttys](https://man.freebsd.org/cgi/man.cgi?ttys)
-to launch it on a virtual console after system boot:
-
-```diff
---- /etc/ttys    2026-06-15 09:11:43.272063000 -0400
-+++ /etc/ttys    2026-06-15 09:12:23.756283000 -0400
-@@ -2,7 +2,7 @@
- #
- ttyv0   "/usr/libexec/getty Pc"         xterm   onifexists secure
- # Virtual terminals
--ttyv1   "/usr/libexec/getty Pc"         xterm   onifexists secure
-+ttyv1   "/usr/libexec/getty Ly"         xterm   onifexists secure
- ttyv2   "/usr/libexec/getty Pc"         xterm   onifexists secure
- ttyv3   "/usr/libexec/getty Pc"         xterm   onifexists secure
- ttyv4   "/usr/libexec/getty Pc"         xterm   onifexists secure
-```
-
-Now we just need to update [gettytab(5)](https://man.freebsd.org/cgi/man.cgi?gettytab)
-with an entry for Ly:
-
-```diff
---- /etcgettytab    2026-06-15 09:31:56.348452000 -0400
-+++ /etc/gettytab   2026-06-11 20:37:58.000000000 -0400
-@@ -234,3 +234,8 @@
-        :np:nc:sp#115200:
- 3wire.230400|230400-3wire:\
-        :np:nc:sp#230400:
-+
-+# Ly login manager
-+Ly:\
-+  :lo=/usr/local/bin/ly_wrapper:\
-+  :al=root:
-```
-
-You should see the Ly login prompt after your next reboot. Or, just give `init`
-a little kick:
-
-```bash
-kill -HUP 1
-```
-
-Ly has many options you can configure in `config.ini`. For example:
+To avoid accidentally launching X11, you can configure SDDM to only start Wayland sessions:
 
 ```ini
-# /usr/local/etc/ly/config.ini
+# /usr/local/etc/sddm.conf
 
-# Force the use of wayland sessions:
-xinitrc = null
-xsessions = null
-shell = false
-waylandsessions = /usr/local/share/wayland-sessions
+[X11]
+SessionDir=/dev/null
+```
+
+Now we can enable the daemon:
+
+```bash
+sysrc -v sddm_enable=YES
+service sddm start
 ```
 
 ## Install Fonts
