@@ -13,6 +13,8 @@ the fun in that?
 
 Here's my list of quality, must-have apps for GrapheneOS. Most of them are open source (to varying degrees of Stallman).
 
+You can [import my Obtainium configs](obtainium-cullum.json) to download all of them at once.
+
 ### [Obtainium](https://obtainium.imranr.dev/)
 
 Install this one first.

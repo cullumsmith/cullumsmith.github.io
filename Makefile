@@ -1,5 +1,5 @@
 BASE_URL           = https://www.sacredheartsc.com
-STATIC_REGEX       = .*\.(html|jpg|jpeg|png|xml|txt|ico|webmanifest|svg|asc)
+STATIC_REGEX       = .*\.(html|jpg|jpeg|png|xml|txt|ico|webmanifest|svg|asc|json)
 BLOG_LIST_LIMIT    = 3
 FEED_TITLE         = Cullum Smith's Blog
 FEED_DESCRIPTION   = Wrangling scripts in the shell and quilismas in the choir loft.
