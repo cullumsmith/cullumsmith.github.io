@@ -122,7 +122,7 @@ no other music library app even comes close.
 
 Simple as.
 
-### [WG Tunnel](https://www.wgtunnel.com/)
+### [WG Tunnel](https://github.com/wgtunnel/android)
 
 Wireguard VPN client that supports automatically connecting and disconnecting based on various events.
 
