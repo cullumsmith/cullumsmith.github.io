@@ -1243,21 +1243,6 @@ A reliable workaround is to simply continue using the previous version:
 pkg install drm-66-kmod
 ```
 
-### No console idle timeout (DPMS)
-
-A few years ago, FreeBSD switched from the old [syscons(4)](https://man.freebsd.org/cgi/man.cgi?syscons)
-console driver to the new UEFI-native
-[vt(4)](https://man.freebsd.org/cgi/man.cgi?vt) driver.
-
-Unfortunately, [no one bothered](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=233356)
-to add `blanktime` support to the `vt` console, so there's effectively no way
-to blank the screen on FreeBSD unless you're running an X11 or Wayland session.
-
-Because the Ly display manager runs on the TTY console, this means that when no one
-is logged in, your screen stays on forever. This isn't much of an issue on single-user
-laptops, but if you're building a multi-user workstation, you might burn the login
-prompt into your LCD panel!
-
 ### GTK4 apps missing icons
 
 The only GTK4 app I use is the [Dino IM](https://dino.im/) XMPP client.
