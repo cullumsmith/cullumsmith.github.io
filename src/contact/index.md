@@ -23,4 +23,11 @@ If you're on the Fediverse, you can find me at [bsd.cafe](https://wiki.bsd.cafe/
 
 - Mastodon: <a rel="me" href="https://mastodon.bsd.cafe/@cullum">@cullum@bsd.cafe</a>
 
+Or if you prefer Big Tech:
+
+- X: [@CullumSmith](https://x.com/CullumSmith)
+- Instagram: [@dixiecatholic](https://www.instagram.com/dixiecatholic/)
+- Facebook: [CullumSmith01](https://www.facebook.com/CullumSmith01)
+- LinkedIn: [in/CullumSmith](https://www.linkedin.com/in/cullumsmith/)
+
 My GPG key is [0x5CAF6291](/gpg.asc).
