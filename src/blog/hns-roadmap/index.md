@@ -71,7 +71,7 @@ Call to mind your resolution throughout the day, as well as the presence of God.
 ## 3. The Brown Scapular
 
 The graces associated with the Brown Scapular of Our Lady of Mount Carmel are abundant.
-People come with all kinds of excuses to not wear it. Just get enrolled and wear it daily!
+People come up with all kinds of excuses to not wear it. Just get enrolled and wear it daily!
 
 ## 4. Daily Rosary
 
